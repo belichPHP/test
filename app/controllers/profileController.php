@@ -10,7 +10,11 @@ class profileController extends Controller
     {
         $user = new user();
         $user->get($params[0]);
-        $this->render('profileShow',['user' => $user]);
+        if(!empty($user->name)) {
+            $this->render('profileShow', ['user' => $user]);
+        } else {
+            $this->render('404');
+        }
     }
 
     public function actionLogin()
@@ -35,9 +39,20 @@ class profileController extends Controller
 
                 $_SESSION['user']['id'] = $user->id;
                 $_SESSION['user']['auth'] = true;
+                $_SESSION['user']['name'] = $user->name;
                 //обновляем страницу
                 header('Refresh:0');
             }
+        }
+    }
+
+    public  function actionLogout()
+    {
+        if($_SESSION['user']['auth'] == true)
+        {
+            unset($_SESSION['user']);
+
+            header('location: /');
         }
     }
 

@@ -1,9 +1,12 @@
+/*TEMPLATE*/
+
 body {
     background-color: lightgray;
     padding: 0;
     margin: 0;
 }
-nav  ul {
+
+nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -11,21 +14,32 @@ nav  ul {
     background-color: #333;
 }
 
-nav  ul  li {
+nav ul li {
     float: left;
-}
-nav  ul  li:last-child{
-    float: right;
+    border-right: 1px white solid;
 }
 
-nav  ul  li  a {
+nav ul li:nth-child(2) {
+    float: right;
+    border-right: none;
+    border-left: 1px white solid;
+}
+
+nav ul li:last-child {
+    float: right;
+    border-right: none;
+    border-left: 1px white solid;
+}
+
+nav ul li a {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
-nav  ul  li  a:hover {
+
+nav ul li a:hover {
     background-color: #111;
 }
 
@@ -42,4 +56,7 @@ footer {
 footer p {
     float: right;
     padding-right: 10px;
+}
+.content {
+    margin: 20px;
 }

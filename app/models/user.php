@@ -21,9 +21,11 @@ class user extends Model
     {
         $sql = "SELECT * FROM user WHERE id = $id";
         $item = $this->pdo->query($sql)->fetch();
+
         $this->id = $item['id'];
         $this->name = $item['name'];
         $this->avatar = $item['avatar'];
+
     }
 
     public function save()
@@ -33,13 +35,22 @@ class user extends Model
         //если она есть то обновляем
         $check = $this->pdo->query($sql)->fetch();
         if ($check) {
-            $sql = "UPDATE user SET name = '$this->name', avatar = '$this->avatar' WHERE id = $this->id";
-            $this->pdo->exec($sql);
+            $sql = "UPDATE user SET name = :name, avatar = :avatar WHERE id = :id";
+            $update = $this->pdo->prepare($sql);
+            $update->execute([
+                ':name' => $this->name,
+                ':avatar' => $this->avatar,
+                ':id' => $this->id,
+            ]);
         } else {
             //если нету добавляем новую
-            $sql = "INSERT INTO user (id, name, avatar) VALUES ($this->id, '" . $this->name . "', '" . $this->avatar . "')";
+            $sql = "INSERT INTO user (id, name, avatar) VALUES (:id, :name, :avatar)";
             $item = $this->pdo->prepare($sql);
-            $item->execute();
+            $item->execute([
+                ':id' => $this->id,
+                ':name' => $this->name,
+                ':avatar' => $this->avatar
+            ]);
 
         }
 

@@ -1,17 +1,19 @@
 <?php
 
 use \app\core\Controller;
+use app\models\post;
 
 class mainController extends Controller
 {
 
     public function actionIndex()
     {
-         $this->render('index',['id' => '122']);
+       $post = new post();
+       $post->create('last','test');
     }
 
     public function action404()
     {
-        echo 'error';
+        $this->render('404');
     }
 }

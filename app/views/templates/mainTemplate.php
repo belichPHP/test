@@ -14,7 +14,14 @@
 <nav>
 <ul>
     <li><a href="/">Главная</a></li>
-    <li><a href="/login">Ввойти</a></li>
+    <li><?= ($_SESSION['user']['auth'] == true ?
+            '<a href="/logout">Выйти</a>':
+            '<a href="/login">Ввойти</a>')?>
+    </li>
+    <?=($_SESSION['user']['auth'] == true ?
+        "<li><a href=/id{$_SESSION['user']['id']}>{$_SESSION['user']['name']}</a></li>" :
+        "" )?>
+
 </ul>
 </nav>
 <div class="content">
