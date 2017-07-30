@@ -11,10 +11,15 @@ class Router
                 'controller' => 'profileController',
                 'action' => 'actionShow',
             ],
-            //страница логина
-            '#^\/login$#' => [
+            //авторизация
+            '#^\/login#' => [
                 'controller' => 'profileController',
                 'action' => 'actionLogin'
+            ],
+            //выход
+            '#^\/logout$#' => [
+                'controller' => 'profileController',
+                'action' => 'actionLogout'
             ],
             //главная страница
             '#^\/$#' => [
