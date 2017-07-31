@@ -1,2 +1,1 @@
-<?php
-echo 'its index.php<br>';
+   <?php generateTree($messages)?>

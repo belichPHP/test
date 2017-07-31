@@ -1,14 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Belix
- * Date: 29.07.2017
- * Time: 17:57
- */
 
 namespace app\models;
 
 use app\core\Model;
+
 
 class user extends Model
 {
@@ -17,26 +12,36 @@ class user extends Model
     public $avatar;
 
 
-    public function get($id)
+    /**
+     * get user by id
+     *
+     * @param $id
+     */
+    public static function get($id)
     {
+        self::connect();
+
         $sql = "SELECT * FROM user WHERE id = $id";
-        $item = $this->pdo->query($sql)->fetch();
-
-        $this->id = $item['id'];
-        $this->name = $item['name'];
-        $this->avatar = $item['avatar'];
-
+        $item = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_CLASS, self::class);
+        return $item[0];
     }
 
+
+    /**
+     * Save record to database
+     *
+     */
     public function save()
     {
+        self::connect();
+
         //проверяем запись в бд
         $sql = "SELECT id FROM user WHERE id = $this->id";
         //если она есть то обновляем
-        $check = $this->pdo->query($sql)->fetch();
+        $check = self::$pdo->query($sql)->fetch();
         if ($check) {
             $sql = "UPDATE user SET name = :name, avatar = :avatar WHERE id = :id";
-            $update = $this->pdo->prepare($sql);
+            $update = self::$pdo->prepare($sql);
             $update->execute([
                 ':name' => $this->name,
                 ':avatar' => $this->avatar,
@@ -45,14 +50,14 @@ class user extends Model
         } else {
             //если нету добавляем новую
             $sql = "INSERT INTO user (id, name, avatar) VALUES (:id, :name, :avatar)";
-            $item = $this->pdo->prepare($sql);
+            $item = self::$pdo->prepare($sql);
             $item->execute([
                 ':id' => $this->id,
                 ':name' => $this->name,
                 ':avatar' => $this->avatar
             ]);
-
         }
-
     }
+
+
 }

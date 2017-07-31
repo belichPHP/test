@@ -1,23 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Belix
- * Date: 29.07.2017
- * Time: 17:58
- */
-
 namespace app\core;
 
 use PDO;
 
+
 class Model
 {
-    public $pdo;
+    protected static $pdo;
 
-    function __construct()
+
+    public static function connect()
     {
-        $this->pdo = new PDO('mysql:host=127.0.0.1;dbname=test','root', '');
+        $connection = include "db.php";
+        self::$pdo = new PDO($connection['host'], $connection['username'], $connection['password']);
     }
-
-
 }

@@ -51,8 +51,10 @@ class Google
         ]));
 
         $response = json_decode($response);
+
         return $response->access_token;
     }
+
 
      public static function getUserInfo($token)
     {
@@ -60,6 +62,7 @@ class Google
         $info = json_decode($info);
         $_SESSION['user']['id'] = $info->id;
         $_SESSION['user']['auth'] = true;
+
         return [
             'id' => $info->id,
             'name' => $info->name,

@@ -1,62 +1,23 @@
-/*TEMPLATE*/
-
-body {
-    background-color: lightgray;
-    padding: 0;
-    margin: 0;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-nav ul li {
-    float: left;
-    border-right: 1px white solid;
-}
-
-nav ul li:nth-child(2) {
-    float: right;
-    border-right: none;
-    border-left: 1px white solid;
-}
-
-nav ul li:last-child {
-    float: right;
-    border-right: none;
-    border-left: 1px white solid;
-}
-
-nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-nav ul li a:hover {
-    background-color: #111;
-}
-
-footer {
-    position: absolute;
-    color: white;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
-    background-color: #333333;
-}
-
-footer p {
-    float: right;
-    padding-right: 10px;
-}
 .content {
-    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.msg-container {
+    padding: 20px 0;
+    width: 200px;
+
+}
+.msg-container .username {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 20px;
+    color: blue;
+}
+.msg-container .reply {
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    color: #fff;
+    background-color: blue;
 }

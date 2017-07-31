@@ -6,19 +6,19 @@ class Router
     public static function rules()
     {
         return [
-            //страница пользователя
-            '#^\/id(\d+)$#' => [
-                'controller' => 'profileController',
-                'action' => 'actionShow',
+            //подгрузка главной стр.
+            '#^\/getPage$#' => [
+                'controller' => 'mainController',
+                'action' => 'getPage'
             ],
             //авторизация
             '#^\/login#' => [
-                'controller' => 'profileController',
+                'controller' => 'mainController',
                 'action' => 'actionLogin'
             ],
             //выход
             '#^\/logout$#' => [
-                'controller' => 'profileController',
+                'controller' => 'mainController',
                 'action' => 'actionLogout'
             ],
             //главная страница
@@ -38,10 +38,9 @@ class Router
             if(preg_match($rule, $uri, $matches)) {
                 $controller = $route['controller'];
                 $action = $route['action'];
-                $params = array_slice($matches,1);
 
-                //перенаправляем на сонтроллер и экшен
-              self::redirect($controller, $action, $params);
+                //перенаправляем на контроллер и экшен
+              self::redirect($controller, $action);
               //выходим из функции
               return;
             }
@@ -50,14 +49,14 @@ class Router
         self::error404();
     }
 
-    public static function redirect($controller, $action, $params = [])
+    public static function redirect($controller, $action)
     {
         // проверяем файл.
         if(file_exists("app/controllers/$controller.php")) {
             //если нашли, то подключаем и вызываем сообветсвующий метод.
             require_once "app/controllers/$controller.php";
             $_controller = new $controller();
-            $_controller->$action($params);
+            $_controller->$action();
         } else {
           self::error404();
         }
