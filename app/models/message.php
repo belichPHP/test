@@ -7,7 +7,7 @@ use app\core\Model;
 
 class message extends Model
 {
-    const pager = 15;
+    const pager = 10;
 
 
     public static function get($parent_id, $page)
@@ -22,7 +22,7 @@ class message extends Model
         $comments = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
 
         foreach ($comments as &$comment) {
-            $item = self::getCommentsTree($comment['id']);
+            $item = self::getMessagesTree($comment['id']);
             if (!empty($item)) {
                 $comment['child'] = $item;
             }
