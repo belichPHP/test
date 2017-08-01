@@ -11,6 +11,11 @@ class Router
                 'controller' => 'mainController',
                 'action' => 'getPage'
             ],
+            //создание нового сообщения.
+            '#^\/message\/create$#' => [
+                'controller' => 'messageController',
+                'action' => 'actionCreate'
+            ],
             //авторизация
             '#^\/login#' => [
                 'controller' => 'mainController',

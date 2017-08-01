@@ -27,7 +27,7 @@ class mainController extends Controller
     public function actionLogin()
     {
         //если пользователь вошел то перенаправляем на его страницу
-        if ($_SESSION['user']['auth'] === true) {
+        if ($_SESSION['user']['auth'] == true) {
             header("location: /");
         } else {
 

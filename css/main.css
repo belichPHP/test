@@ -1,23 +1,114 @@
-.content {
+body {
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.msg-container {
-    padding: 20px 0;
-    width: 200px;
-
+.navigation {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    background-color: lightblue;
+    align-items: center;
+    padding: 10px 0;
+    margin-bottom: 30px;
 }
-.msg-container .username {
+.navigation div {
+    margin-right: 20px;
+}
+.navigation .logged-in {
+    color: #555;
+}
+.navigation .logged-in span {
+    color: #3f3f7b;
+    font-weight: bold;
+}
+.navigation .log-out button {
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    background-color: #3f3f7b;
+    color: #fff;
+    cursor: pointer;
+}
+.msg-container {
+    width: 500px;
+    padding: 10px 0 20px 0;
+}
+.msg-container-info {
+    display: flex;
+}
+.msg-container-info .thumbnail {
+    margin-right: 10px;
+}
+.msg-container .thumbnail img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.msg-container-info .userdata {
+    display: flex;
+    flex-direction: column;
+}
+.msg-container .msg-container-info .userdata .username {
     font-size: 16px;
     font-weight: bold;
-    margin-right: 20px;
-    color: blue;
+    color: #3f3f7b;
+    margin-bottom: 5px;
+}
+.msg-container .msg-container-info .userdata .data {
+    align-self: flex-end;
+    font-size: 11px;
+    color: #888;
 }
 .msg-container .reply {
     border: none;
     outline: none;
-    padding: 5px 10px;
+    padding: 5px 0;
+    color: lightblue;
+    background-color: transparent;
+    cursor: pointer;
+}
+.msg-container .reply:hover {
+    text-decoration: underline;
+}
+.msg-container .msg-content {
+    font-size: 14px;
+    color: #444;
+}
+.form-wrapper {
+    width: 500px;
+    margin-bottom: 40px;
+}
+form {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+form textarea {
+    width: 350px;
+    height: 60px;
+    resize: none;
+    outline: none;
+    color: #555;
+    padding: 5px;
+}
+form button {
+    border: none;
+    outline: none;
+    padding: 10px 30px;
+    background-color: lightblue;
     color: #fff;
-    background-color: blue;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.hider {
+    background-color: transparent;
+    margin-right: 5px;
+}
+.childs {
+    border-top: 1px solid #e9e9e9;
+    padding-left: 20px;
+    border-left:  1px dashed #9a9a9a;
 }
