@@ -4,6 +4,7 @@ require_once 'core/Router.php';
 require_once 'core/Controller.php';
 require_once 'core/Model.php';
 require_once 'core/Google.php';
+require_once 'core/user.php';
 
 //models
 require_once  'models/user.php';

@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="navigation">
-    <?= ($_SESSION['user']['auth'] == true)?"<div class='logged-in'>
+    <?= (user::isAuth())?"<div class='logged-in'>
         You're logged in as: <span>".$_SESSION['user']['name']."</span>
     </div>
     <div class='log-out'>

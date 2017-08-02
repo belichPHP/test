@@ -3,19 +3,25 @@
 use \app\core\Controller;
 use app\models\message;
 
-class messageController extends  Controller
+class messageController extends Controller
 {
 
     public function actionCreate()
     {
-        if($_SESSION['user']['auth'] == true) {
-            if(isset($_POST['parent_id'])) {
-                message::create($_POST['text'],$_POST['parent_id']);
+        if (user::isAuth()) {
+            if (!empty($_POST['text'])) {
+                if (isset($_POST['parent_id'])) {
+                    message::create($_POST['text'], $_POST['parent_id']);
+                } else {
+                    message::create($_POST['text']);
+                    header('location: /');
+                }
             } else {
-                message::create($_POST['text']);
+                header("HTTP/1.1 406 Missing text");
             }
-
-            header('location: /');        }
+        }else {
+            header("HTTP/1.1 401 Unauthorized");
+        }
     }
 
     public function actionEdit()

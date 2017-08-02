@@ -81,12 +81,12 @@ body {
     width: 500px;
     margin-bottom: 40px;
 }
-form {
+#message, #comment {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
 }
-form textarea {
+textarea {
     width: 350px;
     height: 60px;
     resize: none;
@@ -94,7 +94,7 @@ form textarea {
     color: #555;
     padding: 5px;
 }
-form button {
+#message .submit {
     border: none;
     outline: none;
     padding: 10px 30px;

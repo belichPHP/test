@@ -6,7 +6,7 @@ function generateTree($messages)
         echo "<div class='msg-container' id={$message['id']}>"
             ."<div class='msg-container-info'>"
             ."<div class='thumbnail'>"
-            ." <img src='{$message['avatar']}' alt='avatar'>"
+            ."<img src='{$message['avatar']}' alt='avatar'>"
             ."</div>"
             ."<div class='userdata'>"
             ."<span class='username'>{$message['author']} </span>"
@@ -20,7 +20,7 @@ function generateTree($messages)
         if(isset($message['childs'])) {
             echo "<button class='hider'>-</button>";
         }
-            echo "<button class='reply'>Reply</button>";
+        echo "<button class='reply'>Reply</button>";
         if(isset($message['childs'])) {
             echo "<div class='childs'>";
             generateTree($message['childs']);

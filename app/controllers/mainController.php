@@ -10,7 +10,7 @@ class mainController extends Controller
 
     public function actionIndex()
     {
-        $messages = message::get(0,1);
+        $messages = message::get(0,0);
         $this->render('index',['messages' => $messages]);
     }
 
@@ -19,7 +19,7 @@ class mainController extends Controller
     {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $message = message::get(0,$_POST['page']);
-            return $message;
+            generateTree($message);
         }
     }
 

@@ -34,7 +34,7 @@ class message extends Model
             . " AND user.id = message.author"
             . " ORDER BY created_at DESC "
             . " LIMIT " . self::pager
-            . " OFFSET " . self::pager * ($page - 1);
+            . " OFFSET " . self::pager * $page;
 
         $comments = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
 
