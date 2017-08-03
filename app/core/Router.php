@@ -16,6 +16,11 @@ class Router
                 'controller' => 'messageController',
                 'action' => 'actionCreate'
             ],
+            //редактирование сообщения.
+            '#^\/message\/edit$#' => [
+                'controller' => 'messageController',
+                'action' => 'actionEdit'
+            ],
             //авторизация
             '#^\/login#' => [
                 'controller' => 'mainController',
@@ -69,7 +74,7 @@ class Router
 
     public static function error404()
     {
-        //TODO: HEADERS
+        header("HTTP/1.1 404 NOT FOUND");
         self::redirect('mainController', 'action404');
     }
 }

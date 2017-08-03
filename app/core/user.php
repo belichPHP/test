@@ -1,7 +1,7 @@
 <?php
 
 
-class user
+class User
 {
     //Проверка на авторизацию
     public static function isAuth()

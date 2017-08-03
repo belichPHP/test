@@ -25,11 +25,21 @@ class message extends Model
     }
 
 
+    public static function edit($text, $id)
+    {
+        self::connect();
+
+        $sql = "UPDATE message SET comment = '" . $text . "' WHERE id = $id";
+
+        self::$pdo->prepare($sql)->execute();
+    }
+
+
     public static function get($parent_id, $page)
     {
         self::connect();
 
-        $sql = "SELECT message.id, message.parent_id, message.comment, message.created_at, user.name as author, user.avatar"
+        $sql = "SELECT message.id, message.parent_id, message.author as author_id, message.comment, message.created_at, user.name as author, user.avatar"
             . " FROM message, user WHERE message.parent_id = $parent_id "
             . " AND user.id = message.author"
             . " ORDER BY created_at DESC "
@@ -38,7 +48,7 @@ class message extends Model
 
         $comments = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
 
-        foreach ($comments as $key =>&$comment) {
+        foreach ($comments as $key => &$comment) {
             $item = self::getMessagesTree($comment['id']);
             if (!empty($item)) {
                 $comment['childs'] = $item;
@@ -53,10 +63,10 @@ class message extends Model
     public static function getMessagesTree($parent_id)
     {
         self::connect();
-        $sql = "SELECT message.id, message.parent_id, message.comment, message.created_at, user.name as author, user.avatar "
-        . " FROM message, user WHERE parent_id = $parent_id"
-        . " AND user.id = message.author"
-        . " ORDER BY created_at DESC";
+        $sql = "SELECT message.id, message.parent_id, message.author as author_id, message.comment, message.created_at, user.name as author, user.avatar "
+            . " FROM message, user WHERE parent_id = $parent_id"
+            . " AND user.id = message.author"
+            . " ORDER BY created_at DESC";
 
         $_comments = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
 

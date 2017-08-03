@@ -15,6 +15,12 @@ class mainController extends Controller
     }
 
 
+    public function action404()
+    {
+        $this->render('404');
+    }
+
+
     public function getPage()
     {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -27,7 +33,7 @@ class mainController extends Controller
     public function actionLogin()
     {
         //если пользователь вошел то перенаправляем на его страницу
-        if ($_SESSION['user']['auth'] == true) {
+        if (\User::isAuth()) {
             header("location: /");
         } else {
 
